@@ -1,13 +1,4 @@
-# Contributing to claude-owasp-security-skills
-
-## Git Identity
-
-Always set git config before committing:
-```
-git config user.name "Markus Weldon"
-git config user.email "markus.weldon@gmail.com"
-```
-Every commit must be authored as Markus Weldon, never as Claude.
+# Contributing to claude-owasp-security-skill
 
 This repo contains Claude Code skills providing OWASP security guidance. There's no code to run or tests to pass — the "correctness" criterion is accuracy of security guidance and fit within Claude Code's skill constraints.
 
