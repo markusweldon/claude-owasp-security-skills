@@ -191,8 +191,7 @@ Five focused skills means:
 └── owasp-cicd/SKILL.md     # CI/CD + supply chain security
 
 docs/
-├── language-security-reference.md  # Extended language quirks (10+ more languages)
-└── OWASP-2025-2026-Report.md       # Full reference report
+└── language-security-reference.md  # Extended language quirks (10+ more languages)
 
 install.sh                  # Installer script
 ```
