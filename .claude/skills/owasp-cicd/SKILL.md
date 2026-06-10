@@ -73,7 +73,7 @@ jobs:
       contents: read
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@xxxxxxxx
+        uses: aws-actions/configure-aws-credentials@xxxxxxxx  # pin to SHA
         with:
           role-to-assume: arn:aws:iam::123456789:role/deploy-role
           aws-region: us-east-1
@@ -153,8 +153,10 @@ USER 1001                   # non-root user
 ### Artifact Integrity & Provenance (CICD-SEC-9)
 ```yaml
 # Generate SBOM and sign artifacts with Sigstore
+# Pin all third-party actions to a full commit SHA (replace xxxxxxxx with
+# the SHA from the action's release page — never use a mutable tag here)
 - name: Generate SBOM
-  uses: anchore/sbom-action@xxxxxxxx
+  uses: anchore/sbom-action@xxxxxxxx  # pin to SHA, e.g. abc123...
   with:
     image: myorg/myapp:${{ github.sha }}
 

@@ -2,7 +2,7 @@
 # install.sh — install OWASP security skills for Claude Code
 set -euo pipefail
 
-REPO="markusweldon/claude-owasp-security-skill"
+REPO="markusweldon/claude-owasp-security-skills"
 RAW_BASE="https://raw.githubusercontent.com/${REPO}/main"
 SKILLS=(owasp-web owasp-api owasp-mobile owasp-llm owasp-cicd)
 

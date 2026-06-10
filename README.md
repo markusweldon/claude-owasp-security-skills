@@ -35,36 +35,36 @@ Each skill is purpose-built and stays within Claude Code's compaction window (~5
 
 ```bash
 # All 5 skills
-curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skill/main/install.sh | bash
+curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skills/main/install.sh | bash
 
 # Or install individual skills:
-curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skill/main/.claude/skills/owasp-web/SKILL.md \
+curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skills/main/.claude/skills/owasp-web/SKILL.md \
   -o .claude/skills/owasp-web/SKILL.md --create-dirs
 
-curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skill/main/.claude/skills/owasp-api/SKILL.md \
+curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skills/main/.claude/skills/owasp-api/SKILL.md \
   -o .claude/skills/owasp-api/SKILL.md --create-dirs
 
-curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skill/main/.claude/skills/owasp-llm/SKILL.md \
+curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skills/main/.claude/skills/owasp-llm/SKILL.md \
   -o .claude/skills/owasp-llm/SKILL.md --create-dirs
 
-curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skill/main/.claude/skills/owasp-mobile/SKILL.md \
+curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skills/main/.claude/skills/owasp-mobile/SKILL.md \
   -o .claude/skills/owasp-mobile/SKILL.md --create-dirs
 
-curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skill/main/.claude/skills/owasp-cicd/SKILL.md \
+curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skills/main/.claude/skills/owasp-cicd/SKILL.md \
   -o .claude/skills/owasp-cicd/SKILL.md --create-dirs
 ```
 
 ### Global install (all your projects)
 
 ```bash
-curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skill/main/install.sh | bash -s -- --global
+curl -sL https://raw.githubusercontent.com/markusweldon/claude-owasp-security-skills/main/install.sh | bash -s -- --global
 ```
 
 ### Clone and install manually
 
 ```bash
-git clone https://github.com/markusweldon/claude-owasp-security-skill.git
-cd claude-owasp-security-skill
+git clone https://github.com/markusweldon/claude-owasp-security-skills.git
+cd claude-owasp-security-skills
 bash install.sh                    # project-level
 bash install.sh --global           # global (~/.claude/skills/)
 bash install.sh --skill owasp-llm  # single skill only

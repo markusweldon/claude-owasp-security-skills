@@ -58,7 +58,9 @@ def fetch(url: str):
     return requests.get(url).text
 
 # SAFE — validate scheme and block internal ranges
-import ipaddress, urllib.parse
+# DNS rebinding risk: check and request use two separate DNS lookups.
+# In production use `ssrf_filter` (pip install ssrf-filter) to pin DNS resolution.
+import ipaddress, socket, urllib.parse
 
 ALLOWED_SCHEMES = {"https"}
 BLOCKED_RANGES = [
@@ -67,15 +69,23 @@ BLOCKED_RANGES = [
     ipaddress.ip_network("192.168.0.0/16"),
     ipaddress.ip_network("169.254.0.0/16"),  # AWS metadata
     ipaddress.ip_network("127.0.0.0/8"),
+    ipaddress.ip_network("::1/128"),          # IPv6 loopback
 ]
 
-def safe_fetch(url: str):
+def safe_fetch(url: str) -> str:
     parsed = urllib.parse.urlparse(url)
     if parsed.scheme not in ALLOWED_SCHEMES:
         raise ValueError("Scheme not allowed")
-    ip = ipaddress.ip_address(socket.gethostbyname(parsed.hostname))
-    if any(ip in r for r in BLOCKED_RANGES):
-        raise ValueError("Internal IP not allowed")
+    # Resolve all addresses (handles round-robin / multi-homed hosts)
+    try:
+        addrs = {r[4][0] for r in socket.getaddrinfo(parsed.hostname, None)}
+    except socket.gaierror:
+        raise ValueError("Could not resolve hostname")
+    for addr in addrs:
+        if any(ipaddress.ip_address(addr) in r for r in BLOCKED_RANGES):
+            raise ValueError("Internal IP not allowed")
+    # Production: replace the line below with ssrf_filter to pin DNS
+    # from ssrf_filter import ssrf_filter; return ssrf_filter(url).text
     return requests.get(url, allow_redirects=False, timeout=5).text
 ```
 
